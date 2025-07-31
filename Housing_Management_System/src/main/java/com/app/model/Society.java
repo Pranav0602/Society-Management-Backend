@@ -26,6 +26,18 @@ public class Society {
     @Column(nullable = false)
     private String address;
     
+    @Column(name = "registration_number", nullable = false, unique = true)
+    private String registrationNumber;
+    
+    @Column(nullable = false)
+    private String city;
+    
+    @Column(nullable = false)
+    private String state;
+    
+    @Column(length = 10, nullable = false)
+    private String pincode;
+    
     @Column(name = "number_of_buildings")
     private Integer numberOfBuildings;
     

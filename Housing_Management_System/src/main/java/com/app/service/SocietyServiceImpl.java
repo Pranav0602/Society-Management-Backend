@@ -49,10 +49,17 @@ public class SocietyServiceImpl implements SocietyService {
         if (societyRepository.existsByName(request.getName())) {
             throw new ResourceAlreadyExistsException("Society already exists with name: " + request.getName());
         }
+        if (societyRepository.existsByRegistrationNumber(request.getRegistrationNumber())) {
+            throw new ResourceAlreadyExistsException("Society already exists with registration number: " + request.getRegistrationNumber());
+        }
 
         Society society = Society.builder()
                 .name(request.getName())
                 .address(request.getAddress())
+                .registrationNumber(request.getRegistrationNumber())
+                .city(request.getCity())
+                .state(request.getState())
+                .pincode(request.getPincode())
                 .numberOfBuildings(request.getNumberOfBuildings())
                 .build();
 
