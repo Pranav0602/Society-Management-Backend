@@ -11,6 +11,8 @@ import com.app.model.Society;
 public interface SocietyDao extends JpaRepository<Society, Long> {
     
     boolean existsByName(String name);
+
+    boolean existsByRegistrationNumber(String registrationNumber);
     
     Optional<Society> findByName(String name);
 }
