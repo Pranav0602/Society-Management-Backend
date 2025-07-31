@@ -23,8 +23,8 @@ public class Notice {
     private String content;
     
     @Builder.Default
-    @Enumerated(EnumType.STRING)
-    @Column(length = 20)
+    @Enumerated(EnumType.ORDINAL)
+    @Column
     private NoticePriority priority = NoticePriority.NORMAL;
     
     @ManyToOne(fetch = FetchType.LAZY)

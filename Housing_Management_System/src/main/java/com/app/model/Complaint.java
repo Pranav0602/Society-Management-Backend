@@ -25,12 +25,12 @@ public class Complaint {
     @Column(nullable = false)
     private String description;
     
-    @Enumerated(EnumType.STRING)
-    @Column(length = 20)
+    @Enumerated(EnumType.ORDINAL)
+    @Column
     private ComplaintCategory category;
     
-    @Enumerated(EnumType.STRING)
-    @Column(length = 20)
+    @Enumerated(EnumType.ORDINAL)
+    @Column
     private ComplaintStatus status;
     
     @ManyToOne(fetch = FetchType.LAZY)

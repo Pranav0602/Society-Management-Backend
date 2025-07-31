@@ -44,8 +44,8 @@ public class User implements UserDetails{
     @Column(nullable = false)
     private String phone;
     
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 20)
+    @Enumerated(EnumType.ORDINAL)
+    @Column(nullable = false)
     private UserRole role;
     
     @ManyToOne(fetch = FetchType.LAZY)
