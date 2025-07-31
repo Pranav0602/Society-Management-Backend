@@ -39,6 +39,7 @@ public class Visitor {
     
     @Builder.Default
     @Enumerated(EnumType.STRING)
+    @Column(length = 20)
     private VisitorStatus status = VisitorStatus.PENDING;
     
     @ManyToOne(fetch = FetchType.LAZY)

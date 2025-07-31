@@ -26,9 +26,11 @@ public class Complaint {
     private String description;
     
     @Enumerated(EnumType.STRING)
+    @Column(length = 20)
     private ComplaintCategory category;
     
     @Enumerated(EnumType.STRING)
+    @Column(length = 20)
     private ComplaintStatus status;
     
     @ManyToOne(fetch = FetchType.LAZY)

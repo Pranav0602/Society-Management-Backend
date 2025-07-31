@@ -24,6 +24,7 @@ public class Notice {
     
     @Builder.Default
     @Enumerated(EnumType.STRING)
+    @Column(length = 20)
     private NoticePriority priority = NoticePriority.NORMAL;
     
     @ManyToOne(fetch = FetchType.LAZY)

@@ -45,7 +45,7 @@ public class User implements UserDetails{
     private String phone;
     
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(nullable = false, length = 20)
     private UserRole role;
     
     @ManyToOne(fetch = FetchType.LAZY)

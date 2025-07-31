@@ -24,11 +24,11 @@ public class FlatAllocation {
     private Flat flat;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(nullable = false, length = 20)
     private AllocationStatus status = AllocationStatus.PENDING;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(nullable = false, length = 20)
     private ResidentType residentType;
 
     @Column(name = "occupation")
