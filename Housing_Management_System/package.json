@@ -1,0 +1,47 @@
+{
+  "name": "housing-management-system",
+  "version": "1.0.0",
+  "description": "A comprehensive society management system with React frontend and Spring Boot backend",
+  "main": "index.js",
+  "scripts": {
+    "install-all": "npm install && cd frontend && npm install",
+    "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
+    "start:backend": "cd . && mvn spring-boot:run",
+    "start:frontend": "cd frontend && npm start",
+    "build": "npm run build:backend && npm run build:frontend",
+    "build:backend": "mvn clean package",
+    "build:frontend": "cd frontend && npm run build",
+    "test": "npm run test:backend && npm run test:frontend",
+    "test:backend": "mvn test",
+    "test:frontend": "cd frontend && npm test",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "mvn spring-boot:run -Dspring-boot.run.profiles=dev",
+    "dev:frontend": "cd frontend && npm start"
+  },
+  "keywords": [
+    "society-management",
+    "react",
+    "spring-boot",
+    "typescript",
+    "material-ui",
+    "jwt",
+    "websocket"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "your-repository-url"
+  },
+  "bugs": {
+    "url": "your-repository-url/issues"
+  },
+  "homepage": "your-repository-url#readme"
+}
