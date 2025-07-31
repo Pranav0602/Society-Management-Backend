@@ -35,7 +35,7 @@ public class Society {
     @Column(nullable = false)
     private String pincode;
     
-    @Column(name = "registration_number", nullable = false, unique = true)
+    @Column(name = "registration_number", nullable = false)
     private String registrationNumber;
     
     @Column(name = "number_of_buildings")
