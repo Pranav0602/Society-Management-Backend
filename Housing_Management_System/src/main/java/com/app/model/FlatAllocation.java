@@ -23,11 +23,11 @@ public class FlatAllocation {
     @JoinColumn(name = "flat_id", nullable = false)
     private Flat flat;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     @Column(nullable = false)
     private AllocationStatus status = AllocationStatus.PENDING;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     @Column(nullable = false)
     private ResidentType residentType;
 

@@ -44,7 +44,7 @@ public class User implements UserDetails{
     @Column(nullable = false)
     private String phone;
     
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     @Column(nullable = false)
     private UserRole role;
     

@@ -1,0 +1,608 @@
+{
+	"info": {
+		"_postman_id": "housing-management-system",
+		"name": "Housing Management System",
+		"description": "Complete API testing collection for Housing Management System",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Register Admin",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Test Admin\",\n  \"email\": \"admin@example.com\",\n  \"phone\": \"1234567890\",\n  \"password\": \"password123\",\n  \"confirmPassword\": \"password123\",\n  \"role\": \"ADMIN\",\n  \"societyCreationRequest\": {\n    \"name\": \"Test Society\",\n    \"address\": \"Test Address\",\n    \"city\": \"Test City\",\n    \"state\": \"Test State\",\n    \"pincode\": \"123456\"\n  }\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/register",
+							"host": ["{{baseUrl}}"],
+							"path": ["auth", "register"]
+						}
+					},
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200 || pm.response.code === 201) {",
+									"    const response = pm.response.json();",
+									"    pm.environment.set(\"societyId\", response.societyId || 1);",
+									"    console.log(\"Society ID set to:\", response.societyId);",
+									"}"
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Register Resident",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Test Resident\",\n  \"email\": \"resident@example.com\",\n  \"phone\": \"9876543210\",\n  \"password\": \"password123\",\n  \"confirmPassword\": \"password123\",\n  \"role\": \"RESIDENT\",\n  \"societyId\": {{societyId}}\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/register",
+							"host": ["{{baseUrl}}"],
+							"path": ["auth", "register"]
+						}
+					}
+				},
+				{
+					"name": "Register Guard",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Test Guard\",\n  \"email\": \"guard@example.com\",\n  \"phone\": \"5555555555\",\n  \"password\": \"password123\",\n  \"confirmPassword\": \"password123\",\n  \"role\": \"GUARD\",\n  \"societyId\": {{societyId}}\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/register",
+							"host": ["{{baseUrl}}"],
+							"path": ["auth", "register"]
+						}
+					}
+				},
+				{
+					"name": "Login Admin",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"admin@example.com\",\n  \"password\": \"password123\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/login",
+							"host": ["{{baseUrl}}"],
+							"path": ["auth", "login"]
+						}
+					},
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200) {",
+									"    const response = pm.response.json();",
+									"    pm.environment.set(\"adminToken\", response.token);",
+									"    pm.environment.set(\"societyId\", response.societyId);",
+									"    console.log(\"Admin token saved\");",
+									"}"
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Login Resident",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"resident@example.com\",\n  \"password\": \"password123\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/login",
+							"host": ["{{baseUrl}}"],
+							"path": ["auth", "login"]
+						}
+					},
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200) {",
+									"    const response = pm.response.json();",
+									"    pm.environment.set(\"residentToken\", response.token);",
+									"    console.log(\"Resident token saved\");",
+									"}"
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Login Guard",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"guard@example.com\",\n  \"password\": \"password123\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/login",
+							"host": ["{{baseUrl}}"],
+							"path": ["auth", "login"]
+						}
+					},
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200) {",
+									"    const response = pm.response.json();",
+									"    pm.environment.set(\"guardToken\", response.token);",
+									"    console.log(\"Guard token saved\");",
+									"}"
+								]
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Society Management",
+			"item": [
+				{
+					"name": "Get All Societies",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/societies",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "societies"]
+						}
+					}
+				},
+				{
+					"name": "Get Society by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/societies/{{societyId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "societies", "{{societyId}}"]
+						}
+					}
+				},
+				{
+					"name": "Update Society",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminToken}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Updated Society Name\",\n  \"address\": \"Updated Address\",\n  \"city\": \"Updated City\",\n  \"state\": \"Updated State\",\n  \"pincode\": \"654321\",\n  \"numberOfBuildings\": 5\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/societies/{{societyId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "societies", "{{societyId}}"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Building Management",
+			"item": [
+				{
+					"name": "Create Building",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminToken}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Building A\",\n  \"totalFloors\": 10,\n  \"societyId\": {{societyId}}\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/buildings",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "buildings"]
+						}
+					},
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 201) {",
+									"    const response = pm.response.json();",
+									"    pm.environment.set(\"buildingId\", response.id);",
+									"    console.log(\"Building ID set to:\", response.id);",
+									"}"
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Get All Buildings",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/buildings",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "buildings"]
+						}
+					}
+				},
+				{
+					"name": "Get Building by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/buildings/{{buildingId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "buildings", "{{buildingId}}"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Flat Management",
+			"item": [
+				{
+					"name": "Create Flat",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminToken}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"flatNumber\": \"A-101\",\n  \"floorNumber\": 1,\n  \"flatType\": \"TWO_BHK\",\n  \"area\": 1200.0,\n  \"buildingId\": {{buildingId}}\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/flats",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "flats"]
+						}
+					},
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 201) {",
+									"    const response = pm.response.json();",
+									"    pm.environment.set(\"flatId\", response.id);",
+									"    console.log(\"Flat ID set to:\", response.id);",
+									"}"
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Get All Flats",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/flats",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "flats"]
+						}
+					}
+				},
+				{
+					"name": "Get Flat by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/flats/{{flatId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "flats", "{{flatId}}"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Notice Management",
+			"item": [
+				{
+					"name": "Create Notice",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminToken}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Important Notice\",\n  \"content\": \"This is an important notice for all residents.\",\n  \"priority\": \"HIGH\",\n  \"societyId\": {{societyId}},\n  \"expiresAt\": \"2024-12-31T23:59:59\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/notices",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "notices"]
+						}
+					}
+				},
+				{
+					"name": "Get All Notices",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/notices",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "notices"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Complaint Management",
+			"item": [
+				{
+					"name": "Create Complaint",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{residentToken}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Water Issue\",\n  \"description\": \"No water supply in flat A-101\",\n  \"category\": \"MAINTENANCE\",\n  \"flatId\": {{flatId}}\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/complaints",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "complaints"]
+						}
+					}
+				},
+				{
+					"name": "Get All Complaints",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/complaints",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "complaints"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Visitor Management",
+			"item": [
+				{
+					"name": "Register Visitor",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{residentToken}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"John Doe\",\n  \"phone\": \"1111111111\",\n  \"purpose\": \"Meeting with resident\",\n  \"flatId\": {{flatId}}\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/visitors",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "visitors"]
+						}
+					}
+				},
+				{
+					"name": "Get All Visitors",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{guardToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/visitors",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "visitors"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "User Management",
+			"item": [
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/users",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "users"]
+						}
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080",
+			"type": "string"
+		}
+	]
+}

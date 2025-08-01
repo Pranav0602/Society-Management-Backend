@@ -53,6 +53,9 @@ public class SocietyServiceImpl implements SocietyService {
         Society society = Society.builder()
                 .name(request.getName())
                 .address(request.getAddress())
+                .city(request.getCity())
+                .state(request.getState())
+                .pincode(request.getPincode())
                 .numberOfBuildings(request.getNumberOfBuildings())
                 .build();
 
@@ -73,6 +76,9 @@ public class SocietyServiceImpl implements SocietyService {
 
         society.setName(societyDto.getName());
         society.setAddress(societyDto.getAddress());
+        society.setCity(societyDto.getCity());
+        society.setState(societyDto.getState());
+        society.setPincode(societyDto.getPincode());
         society.setNumberOfBuildings(societyDto.getNumberOfBuildings());
 
         Society updatedSociety = societyRepository.save(society);

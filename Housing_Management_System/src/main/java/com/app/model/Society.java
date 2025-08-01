@@ -26,6 +26,18 @@ public class Society {
     @Column(nullable = false)
     private String address;
     
+    @Column(nullable = false)
+    private String city;
+    
+    @Column(nullable = false)
+    private String state;
+    
+    @Column(nullable = false)
+    private String pincode;
+    
+    @Column(name = "registration_number", nullable = false)
+    private String registrationNumber;
+    
     @Column(name = "number_of_buildings")
     private Integer numberOfBuildings;
     
@@ -42,6 +54,17 @@ public class Society {
     @PrePersist
     protected void onCreate() {
         createdAt = LocalDateTime.now();
+        // Generate registration number if not provided
+        if (registrationNumber == null || registrationNumber.isEmpty()) {
+            registrationNumber = generateRegistrationNumber();
+        }
+    }
+    
+    private String generateRegistrationNumber() {
+        // Generate a unique registration number based on timestamp and name
+        String timestamp = String.valueOf(System.currentTimeMillis());
+        String namePrefix = name != null ? name.substring(0, Math.min(3, name.length())).toUpperCase() : "SOC";
+        return namePrefix + timestamp.substring(timestamp.length() - 6);
     }
    
 	

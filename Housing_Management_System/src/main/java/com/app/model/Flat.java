@@ -27,7 +27,8 @@ public class Flat {
     @Column(nullable = false)
     private Integer floorNumber;
     
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
+    @Column
     private FlatType flatType;
     
     @Column(nullable = false)
