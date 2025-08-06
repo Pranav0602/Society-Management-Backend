@@ -64,12 +64,13 @@ public class FlatController {
     }
 
     @GetMapping("/society/{societyId}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'GUARD')")
     public ResponseEntity<List<FlatDTO>> getFlatsBySocietyId(
             @PathVariable Long societyId,
             @AuthenticationPrincipal User currentUser) {
         
         // Ensure user can only access flats from their own society
-        if (currentUser.getSociety() != null && !currentUser.getSociety().getId().equals(societyId) && currentUser.getRole() != UserRole.ADMIN) {
+        if (currentUser.getSociety() != null && !currentUser.getSociety().getId().equals(societyId)) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         }
         

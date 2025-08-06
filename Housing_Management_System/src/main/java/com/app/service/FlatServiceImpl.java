@@ -71,6 +71,8 @@ public class FlatServiceImpl implements FlatService {
         Flat flat = Flat.builder()
                 .flatNumber(flatDto.getFlatNumber())
                 .floorNumber(flatDto.getFloorNumber())
+                .flatType(flatDto.getFlatType())
+                .area(flatDto.getArea())
                 .building(building)
                 .build();
 

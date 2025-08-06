@@ -21,13 +21,14 @@ public interface FlatMapper {
     List<FlatDTO> toDtoList(List<Flat> flats);
     
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "building", ignore = true)
-    @Mapping(target = "member", ignore = true)
+    @Mapping(target = "members", ignore = true)
     @Mapping(target = "maintenanceBills", ignore = true)
     @Mapping(target = "flatAllocations", ignore = true)
     @Mapping(target = "complaints", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
+    @Mapping(source = "buildingId", target = "building.id")
+    @Mapping(source = "buildingName", target = "building.name")
     Flat toEntity(FlatDTO dto);
     
     @Named("getBuildingId")

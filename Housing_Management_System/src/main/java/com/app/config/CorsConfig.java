@@ -1,6 +1,8 @@
 package com.app.config;
 
 
+import java.util.Arrays;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
@@ -17,7 +19,7 @@ public class CorsConfig {
         
         // Allow all origins in development - in production, specify your frontend URL
         config.setAllowCredentials(true);
-        config.addAllowedOrigin("http://localhost:3000"); // React default port
+        config.setAllowedOriginPatterns(Arrays.asList("http://localhost:3000")); // React default port
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
         

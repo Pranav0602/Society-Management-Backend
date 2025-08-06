@@ -27,7 +27,7 @@ public class Flat {
     @Column(nullable = false)
     private Integer floorNumber;
     
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     private FlatType flatType;
     
     @Column(nullable = false)
@@ -43,8 +43,8 @@ public class Flat {
     @OneToMany(mappedBy = "flat", cascade = CascadeType.ALL)
     private Set<Complaint> complaints;
     
-    @OneToOne(mappedBy = "flat")
-    private FlatMember member;
+    @OneToMany(mappedBy = "flat", cascade = CascadeType.ALL)
+    private Set<FlatMember> members;
     
     @OneToMany(mappedBy = "flat", cascade = CascadeType.ALL)
     private List<MaintenanceBill> maintenanceBills;

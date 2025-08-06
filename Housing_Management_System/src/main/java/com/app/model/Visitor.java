@@ -38,7 +38,7 @@ public class Visitor {
     private Flat visitingFlat;
     
     @Builder.Default
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     private VisitorStatus status = VisitorStatus.PENDING;
     
     @ManyToOne(fetch = FetchType.LAZY)
